@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/baseline_dashboard_24" />
+    <item
+        android:id="@+id/nav_rooms"
+        android:title="Rooms"
+        android:icon="@drawable/door"/>
+    <item
+        android:id="@+id/nav_payments"
+        android:title="Payments"
+        android:icon="@drawable/payment_card"/>
+    <item
+        android:id="@+id/nav_maintenance"
+        android:title="Maintenance"
+        android:icon="@drawable/maintenance_warning"/>
+    <item
+        android:id="@+id/nav_users"
+        android:title="Users"
+        android:icon="@drawable/person"/>
+    <item
+        android:id="@+id/nav_more"
+        android:title="More"
+        android:icon="@drawable/menu_symbol_of_three_parallel_lines_svgrepo_com"/>
+</menu>

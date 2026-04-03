@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Header Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerAnnouncement"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnBackFrame"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="#F5F6F8"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnBackAnnouncement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:src="@drawable/outline_arrow_back_24"
+                app:tint="#000000"
+                android:contentDescription="Back" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Notify Tenants"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/btnBackFrame"
+            app:layout_constraintTop_toTopOf="@id/btnBackFrame" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send announcements &amp; alerts"
+            android:textColor="#888888"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerAnnouncement">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
+
+            <!-- Compose Announcement Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCompose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="#F0F0F0"
+                app:strokeWidth="1dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/lblCompose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COMPOSE ANNOUNCEMENT"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/lblSubject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Subject"
+                        android:textColor="#000000"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/lblCompose" />
+
+                    <EditText
+                        android:id="@+id/etSubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/search_bg"
+                        android:backgroundTint="#F9FAFB"
+                        android:hint="Enter announcement subject"
+                        android:paddingHorizontal="12dp"
+                        android:textSize="14sp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        app:layout_constraintTop_toBottomOf="@id/lblSubject" />
+
+                    <TextView
+                        android:id="@+id/lblRecipients"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Recipients"
+                        android:textColor="#000000"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etSubject" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutRecipients"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:boxBackgroundColor="#F9FAFB"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeWidth="0dp"
+                        app:layout_constraintTop_toBottomOf="@id/lblRecipients">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/spinnerRecipients"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select recipients"
+                            android:inputType="none"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/lblMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Message"
+                        android:textColor="#000000"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layoutRecipients" />
+
+                    <EditText
+                        android:id="@+id/etMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/search_bg"
+                        android:backgroundTint="#F9FAFB"
+                        android:gravity="top"
+                        android:hint="Type your announcement message here..."
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:importantForAutofill="no"
+                        android:inputType="textMultiLine"
+                        app:layout_constraintTop_toBottomOf="@id/lblMessage" />
+
+                    <Button
+                        android:id="@+id/btnSendNow"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="#2F80ED"
+                        android:text="Send Now"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp"
+                        app:icon="@android:drawable/ic_menu_send"
+                        app:layout_constraintEnd_toStartOf="@+id/btnSchedule"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etMessage" />
+
+                    <Button
+                        android:id="@+id/btnSchedule"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Schedule"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp"
+                        app:icon="@android:drawable/ic_menu_recent_history"
+                        app:iconTint="#000000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btnSendNow"
+                        app:layout_constraintTop_toTopOf="@id/btnSendNow"
+                        app:strokeColor="#EEEEEE" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Recent Notifications Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardRecent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="#F0F0F0"
+                app:strokeWidth="1dp"
+                app:layout_constraintTop_toBottomOf="@id/cardCompose">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/lblRecent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RECENT NOTIFICATIONS"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvSentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/badge_occupied"
+                        android:backgroundTint="#E9F2FF"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="5 Sent"
+                        android:textColor="#2F80ED"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Item 1: Maintenance Notice -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/item1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toBottomOf="@id/lblRecent">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/icContainer1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#F5F9FF"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_dialog_info" app:tint="#2F80ED" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <TextView android:id="@+id/tvTitle1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Maintenance Notice" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/icContainer1" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/tvTime1"/>
+                        <TextView android:id="@+id/tvTime1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2h ago" android:textColor="#888" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView android:id="@+id/tvMsg1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Water supply will be interrupted on Dec 15 from 9AM-12PM for pipe maintenance." android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/tvTitle1" app:layout_constraintTop_toBottomOf="@id/tvTitle1" app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView android:id="@+id/tvStats1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="👁 24 read  ✔ 30 delivered" android:textSize="11sp" android:textColor="#AAA" app:layout_constraintStart_toStartOf="@id/tvTitle1" app:layout_constraintTop_toBottomOf="@id/tvMsg1"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:id="@+id/div1" android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/item1"/>
+
+                    <!-- Item 2: Payment Reminder -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/item2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/div1">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/icContainer2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#FFF5F5"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_attach_money_24" app:tint="#FF4D4D" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <TextView android:id="@+id/tvTitle2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Payment Reminder" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/icContainer2" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/tvTime2"/>
+                        <TextView android:id="@+id/tvTime2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1d ago" android:textColor="#888" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView android:id="@+id/tvMsg2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Rent payment for December is due on the 5th. Please ensure timely payment." android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/tvTitle2" app:layout_constraintTop_toBottomOf="@id/tvTitle2" app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView android:id="@+id/tvStats2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="👁 18 read  ✔ 30 delivered" android:textSize="11sp" android:textColor="#AAA" app:layout_constraintStart_toStartOf="@id/tvTitle2" app:layout_constraintTop_toBottomOf="@id/tvMsg2"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:id="@+id/div2" android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/item2"/>
+
+                    <!-- Item 3: Holiday Greeting -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/item3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/div2">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/icContainer3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#E8F5E9"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_menu_gallery" app:tint="#2E7D32" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <TextView android:id="@+id/tvTitle3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Holiday Greeting" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/icContainer3" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/tvTime3"/>
+                        <TextView android:id="@+id/tvTime3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3d ago" android:textColor="#888" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView android:id="@+id/tvMsg3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Wishing all tenants a wonderful holiday season! Office hours may vary." android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/tvTitle3" app:layout_constraintTop_toBottomOf="@id/tvTitle3" app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView android:id="@+id/tvStats3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="👁 28 read  ✔ 30 delivered" android:textSize="11sp" android:textColor="#AAA" app:layout_constraintStart_toStartOf="@id/tvTitle3" app:layout_constraintTop_toBottomOf="@id/tvMsg3"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:id="@+id/div3" android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/item3"/>
+
+                    <!-- Item 4: Security Update -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/item4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/div3">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/icContainer4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#FFF3E0"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_lock_lock" app:tint="#EF6C00" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <TextView android:id="@+id/tvTitle4" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Security Update" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/icContainer4" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/tvTime4"/>
+                        <TextView android:id="@+id/tvTime4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5d ago" android:textColor="#888" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView android:id="@+id/tvMsg4" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="New security cameras installed in parking area B. Report any concerns." android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/tvTitle4" app:layout_constraintTop_toBottomOf="@id/tvTitle4" app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView android:id="@+id/tvStats4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="👁 22 read  ✔ 30 delivered" android:textSize="11sp" android:textColor="#AAA" app:layout_constraintStart_toStartOf="@id/tvTitle4" app:layout_constraintTop_toBottomOf="@id/tvMsg4"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:id="@+id/div4" android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/item4"/>
+
+                    <!-- Item 5: General Update -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/item5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/div4">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/icContainer5"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#F5F5F5"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@android:drawable/ic_dialog_info" app:tint="#616161" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <TextView android:id="@+id/tvTitle5" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="General Update" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/icContainer5" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/tvTime5"/>
+                        <TextView android:id="@+id/tvTime5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1w ago" android:textColor="#888" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView android:id="@+id/tvMsg5" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Building lobby renovation complete. Thank you for your patience." android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/tvTitle5" app:layout_constraintTop_toBottomOf="@id/tvTitle5" app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView android:id="@+id/tvStats5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="👁 28 read  ✔ 30 delivered" android:textSize="11sp" android:textColor="#AAA" app:layout_constraintStart_toStartOf="@id/tvTitle5" app:layout_constraintTop_toBottomOf="@id/tvMsg5"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

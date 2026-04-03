@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <!-- HEADER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingHorizontal="16dp"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#2F80ED"
+            android:padding="6dp"
+            android:src="@drawable/baseline_dashboard_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvAppTitle"
+            android:text="PropTrack"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#2F80ED"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            android:layout_marginStart="10dp"/>
+
+        <ImageView
+            android:id="@+id/bell"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/bell_svgrepo_com"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="#888888" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- GREETING -->
+    <TextView
+        android:id="@+id/hello"
+        android:text="Hello, Admin!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:text="Property Overview"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hello"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- COMPACT CARD GRID (Smaller cards, Icon beside Title) -->
+    <!-- Total Income -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card1"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="6dp"
+        app:cardBackgroundColor="#E9F2FF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card2">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+            <ImageView
+                android:id="@+id/icIncome"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/outline_attach_money_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#2F80ED" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Total Income"
+                android:textColor="#555555"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/icIncome"
+                app:layout_constraintStart_toEndOf="@id/icIncome"
+                app:layout_constraintTop_toTopOf="@id/icIncome" />
+            <TextView
+                android:id="@+id/valIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="₱156,500"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/icIncome"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="↗ +12% this month"
+                android:textColor="#2E7D32"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/valIncome"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Pending Payments -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card2"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#FFF9E6"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toTopOf="@id/card1"
+        app:layout_constraintStart_toEndOf="@id/card1"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+            <ImageView
+                android:id="@+id/icPending"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@android:drawable/ic_menu_recent_history"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FBC02D" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Pending"
+                android:textColor="#555555"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/icPending"
+                app:layout_constraintStart_toEndOf="@id/icPending"
+                app:layout_constraintTop_toTopOf="@id/icPending" />
+            <TextView
+                android:id="@+id/valPending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="8"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/icPending"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₱42,000 outstanding"
+                android:textColor="#888888"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/valPending"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Occupancy Rate -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card3"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="6dp"
+        app:cardBackgroundColor="#E8F5E9"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/card1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card4">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+            <ImageView
+                android:id="@+id/icOccupancy"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/outline_aq_indoor_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#2E7D32" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Occupancy"
+                android:textColor="#555555"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/icOccupancy"
+                app:layout_constraintStart_toEndOf="@id/icOccupancy"
+                app:layout_constraintTop_toTopOf="@id/icOccupancy" />
+            <TextView
+                android:id="@+id/valOccupancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="85%"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/icOccupancy"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17/20 units"
+                android:textColor="#888888"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/valOccupancy"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Maintenance -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card4"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#FEECEB"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toTopOf="@id/card3"
+        app:layout_constraintStart_toEndOf="@id/card3"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+            <ImageView
+                android:id="@+id/icMaint"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@android:drawable/stat_notify_error"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#D32F2F" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Maintenance"
+                android:textColor="#555555"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/icMaint"
+                app:layout_constraintStart_toEndOf="@id/icMaint"
+                app:layout_constraintTop_toTopOf="@id/icMaint" />
+            <TextView
+                android:id="@+id/valMaintenance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="5"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/icMaint"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 urgent"
+                android:textColor="#D32F2F"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/valMaintenance"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- RECENT ACTIVITY -->
+    <TextView
+        android:id="@+id/txtRecentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Activity"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/card3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View All"
+        android:textColor="#2F80ED"
+        android:textStyle="bold"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="@id/txtRecentActivity"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recentActivityCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp"
+        app:strokeColor="#F0F0F0"
+        app:strokeWidth="1dp"
+        app:layout_constraintTop_toBottomOf="@id/txtRecentActivity"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Activity 1 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/actIc1"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:cardBackgroundColor="#E6F4EA"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_attach_money_24" app:tint="#1E8E3E" />
+                </com.google.android.material.card.MaterialCardView>
+                <TextView android:id="@+id/actT1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Payment from Unit 101" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/actIc1" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/actTm1"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="₱8,500 — Rent payment" android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/actT1" app:layout_constraintTop_toBottomOf="@id/actT1" />
+                <TextView android:id="@+id/actTm1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2h ago" android:textColor="#AAA" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginVertical="12dp"/>
+
+            <!-- Activity 2 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/actIc2"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:cardBackgroundColor="#E9F2FF"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_article_person_24" app:tint="#2F80ED" />
+                </com.google.android.material.card.MaterialCardView>
+                <TextView android:id="@+id/actT2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="New Lease: Ana Cruz" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/actIc2" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/actTm2"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Unit 105 — Approved" android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/actT2" app:layout_constraintTop_toBottomOf="@id/actT2" />
+                <TextView android:id="@+id/actTm2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5h ago" android:textColor="#AAA" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginVertical="12dp"/>
+
+            <!-- Activity 3 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/actIc3"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:cardBackgroundColor="#FFF9E6"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_badminton_24" app:tint="#FBC02D" />
+                </com.google.android.material.card.MaterialCardView>
+                <TextView android:id="@+id/actT3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Maintenance Completed" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/actIc3" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/actTm3"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Room 302 — Fix Clogged Drain" android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/actT3" app:layout_constraintTop_toBottomOf="@id/actT3" />
+                <TextView android:id="@+id/actTm3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1d ago" android:textColor="#AAA" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

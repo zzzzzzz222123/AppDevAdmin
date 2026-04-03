@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <!-- Header Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerMaintenance"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBackMaintenance"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/outline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#000000" />
+
+        <TextView
+            android:id="@+id/lblMaintenance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maintenance"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnAddMaintenance"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            app:strokeColor="#EEEEEE"
+            app:strokeWidth="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/outline_add_24"
+                app:tint="#2F80ED" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Search & Filter Section -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/maintenanceSearchView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/search_bg"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/btnMaintenanceFilter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerMaintenance"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Search requests..."
+        app:searchIcon="@drawable/search" />
+
+    <ImageButton
+        android:id="@+id/btnMaintenanceFilter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_bg"
+        android:padding="12dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/filter_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/maintenanceSearchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/maintenanceSearchView" />
+
+    <!-- Status Tabs -->
+    <LinearLayout
+        android:id="@+id/maintenanceFilterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/maintenanceSearchView">
+
+        <TextView
+            android:id="@+id/btnFilterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/filter_btn_selector"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="All"
+            android:textColor="@drawable/filter_text_selector"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btnFilterPending"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/filter_btn_selector"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="Pending"
+            android:textColor="@drawable/filter_text_selector"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btnFilterOngoing"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/filter_btn_selector"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="Ongoing"
+            android:textColor="@drawable/filter_text_selector"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btnFilterCompleted"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/filter_btn_selector"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="Completed"
+            android:textColor="@drawable/filter_text_selector"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- Status Counters -->
+    <LinearLayout
+        android:id="@+id/statusCounterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/maintenanceFilterContainer">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/badge_pending"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:text="● Pending: 3"
+            android:textColor="#EF6C00"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/badge_ongoing"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:text="● Ongoing: 2"
+            android:textColor="#1976D2"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/badge_completed"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:text="● Completed: 8"
+            android:textColor="#2E7D32"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- List -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statusCounterContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <include android:id="@+id/ItemMaintenancePending" layout="@layout/item_maintenance_pending" />
+            <include android:id="@+id/ItemMaintenanceOngoing" layout="@layout/item_maintenance_ongoing" />
+            <include android:id="@+id/ItemMaintenanceCompleted" layout="@layout/item_maintenance_completed" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
