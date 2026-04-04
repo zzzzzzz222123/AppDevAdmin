@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -114,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="Room Type*"
+                    android:text="Room Type"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -124,65 +125,69 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutRoomType"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
                     app:boxBackgroundColor="#F9FAFB"
                     app:boxCornerRadiusBottomEnd="14dp"
                     app:boxCornerRadiusBottomStart="14dp"
                     app:boxCornerRadiusTopEnd="14dp"
                     app:boxCornerRadiusTopStart="14dp"
                     app:hintEnabled="false"
-                    app:layout_constraintTop_toBottomOf="@id/lblRoomType"
-                    app:startIconDrawable="@drawable/outline_aq_indoor_24">
+                    app:layout_constraintEnd_toStartOf="@+id/layoutFloor"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lblRoomType">
 
                     <AutoCompleteTextView
                         android:id="@+id/etRoomType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Select room type"
                         android:inputType="none"
                         android:paddingVertical="18dp"
-                        android:textSize="16sp" />
+                        android:text="Studio"
+                        android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Building / Property -->
                 <TextView
-                    android:id="@+id/lblBuilding"
+                    android:id="@+id/lblFloor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Building / Property*"
+                    android:text="Floor"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutRoomType" />
+                    app:layout_constraintStart_toStartOf="@id/layoutFloor"
+                    app:layout_constraintTop_toTopOf="@id/lblRoomType" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutBuilding"
+                    android:id="@+id/layoutFloor"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     app:boxBackgroundColor="#F9FAFB"
                     app:boxCornerRadiusBottomEnd="14dp"
                     app:boxCornerRadiusBottomStart="14dp"
                     app:boxCornerRadiusTopEnd="14dp"
                     app:boxCornerRadiusTopStart="14dp"
                     app:hintEnabled="false"
-                    app:layout_constraintTop_toBottomOf="@id/lblBuilding"
-                    app:startIconDrawable="@drawable/outline_aq_indoor_24">
+                    app:layout_constraintBottom_toBottomOf="@id/layoutRoomType"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/layoutRoomType"
+                    app:layout_constraintTop_toTopOf="@id/layoutRoomType">
 
                     <AutoCompleteTextView
-                        android:id="@+id/etBuilding"
+                        android:id="@+id/etFloor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sunrise Residences"
                         android:inputType="none"
                         android:paddingVertical="18dp"
-                        android:textSize="16sp" />
+                        android:text="1st Floor"
+                        android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <!-- Building / Property -->
 
                 <!-- Monthly Rent & Status Row -->
                 <TextView
@@ -195,7 +200,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutBuilding" />
+                    app:layout_constraintTop_toBottomOf="@+id/layoutRoomType" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutRent"

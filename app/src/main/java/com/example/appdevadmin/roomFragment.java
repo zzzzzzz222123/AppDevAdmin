@@ -13,15 +13,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class roomFragment extends Fragment {
 
-    private TextView btnAll, btnOccupied, btnVacant;
-    private View card1, card2, card3;
+    private TextView btnAll, btnOccupied, btnVacant, lblStats;
     private SearchView searchView;
     private ImageButton btnFilter;
     private Button btnAdd;
-    
+    private RecyclerView recyclerRooms;
+
+    private RoomAdapter adapter;
+    private List<RoomModel> allRooms = new ArrayList<>();
+    private FirebaseFirestore db;
+
     private String currentStatus = "all";
     private String searchQuery = "";
 
@@ -35,46 +47,44 @@ public class roomFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Find filter buttons
+        db = FirebaseFirestore.getInstance();
+
+        // Views
         btnAll = view.findViewById(R.id.btnFilterAll);
         btnOccupied = view.findViewById(R.id.btnFilterOccupied);
         btnVacant = view.findViewById(R.id.btnFilterVacant);
-
-        // Find search and filter button
+        lblStats = view.findViewById(R.id.lblStats);
         searchView = view.findViewById(R.id.searchView);
         btnFilter = view.findViewById(R.id.btnFilter);
         btnAdd = view.findViewById(R.id.btnAdd);
+        recyclerRooms = view.findViewById(R.id.recyclerRooms);
 
-        // Find room cards
-        card1 = view.findViewById(R.id.cardRoom1); // Occupied, Room 101
-        card2 = view.findViewById(R.id.cardRoom2); // Occupied, Room 102
-        card3 = view.findViewById(R.id.cardRoom3); // Vacant, Room 103
+        // RecyclerView setup
+        adapter = new RoomAdapter(requireContext(), new ArrayList<>(), room -> {
+            RoomDetailsDialogFragment detailsDialog = RoomDetailsDialogFragment.newInstance(room);
+            detailsDialog.show(getChildFragmentManager(), "RoomDetailsDialog");
+        });
+        recyclerRooms.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerRooms.setAdapter(adapter);
 
-        // Set default selection
+        // Default filter
         btnAll.setSelected(true);
 
-        // Add Room Button Listener
+        // Load rooms from Firestore
+        loadRooms();
+
+        // Add Room
         btnAdd.setOnClickListener(v -> {
             AddRoomDialogFragment dialog = new AddRoomDialogFragment();
             dialog.show(getChildFragmentManager(), "AddRoomDialog");
         });
 
-        // Room Card Click Listeners - Open Details Dialog
-        View.OnClickListener cardClickListener = v -> {
-            RoomDetailsDialogFragment detailsDialog = new RoomDetailsDialogFragment();
-            detailsDialog.show(getChildFragmentManager(), "RoomDetailsDialog");
-        };
-
-        card1.setOnClickListener(cardClickListener);
-        card2.setOnClickListener(cardClickListener);
-        card3.setOnClickListener(cardClickListener);
-        
-        // Status Click Listeners
+        // Filter buttons
         btnAll.setOnClickListener(v -> updateStatusFilter("all"));
         btnOccupied.setOnClickListener(v -> updateStatusFilter("occupied"));
         btnVacant.setOnClickListener(v -> updateStatusFilter("vacant"));
 
-        // Search Listener
+        // Search
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -91,38 +101,61 @@ public class roomFragment extends Fragment {
             }
         });
 
-        // Advanced Filter Button Listener
-        btnFilter.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Advanced Filter Clicked", Toast.LENGTH_SHORT).show();
-        });
-        
+        btnFilter.setOnClickListener(v ->
+                Toast.makeText(getContext(), "Advanced Filter Clicked", Toast.LENGTH_SHORT).show()
+        );
+    }
+
+    private void loadRooms() {
+        db.collection("rooms")
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null || snapshots == null) return;
+
+                    allRooms.clear();
+                    for (QueryDocumentSnapshot doc : snapshots) {
+                        RoomModel room = new RoomModel(
+                                doc.getId(),
+                                doc.getString("roomNumber"),
+                                doc.getString("roomType"),
+                                doc.getString("floor"),
+                                doc.getDouble("monthlyRent") != null ? doc.getDouble("monthlyRent") : 0,
+                                doc.getString("status")
+                        );
+                        allRooms.add(room);
+                    }
+                    applyFilters();
+                });
+    }
+
+    private void applyFilters() {
+        List<RoomModel> filtered = new ArrayList<>();
+        int occupied = 0, vacant = 0;
+
+        for (RoomModel room : allRooms) {
+            boolean matchesStatus = currentStatus.equals("all")
+                    || room.getStatus().equalsIgnoreCase(currentStatus);
+            boolean matchesSearch = searchQuery.isEmpty()
+                    || room.getRoomNumber().toLowerCase().contains(searchQuery)
+                    || room.getRoomType().toLowerCase().contains(searchQuery)
+                    || room.getFloor().toLowerCase().contains(searchQuery);
+
+            if (matchesStatus && matchesSearch) filtered.add(room);
+
+            // Count all rooms regardless of filter
+            if (room.getStatus().equalsIgnoreCase("Occupied")) occupied++;
+            else if (room.getStatus().equalsIgnoreCase("Vacant")) vacant++;
+        }
+
+        adapter.updateList(filtered);
+        lblStats.setText("Total: " + allRooms.size() + " rooms · "
+                + occupied + " Occupied · " + vacant + " Vacant");
     }
 
     private void updateStatusFilter(String status) {
         currentStatus = status;
-        
-        // Update button visual states
         btnAll.setSelected(status.equals("all"));
         btnOccupied.setSelected(status.equals("occupied"));
         btnVacant.setSelected(status.equals("vacant"));
-        
         applyFilters();
-    }
-
-    private void applyFilters() {
-        // Filter logic for Room 101 (Occupied)
-        boolean matchesStatus1 = currentStatus.equals("all") || currentStatus.equals("occupied");
-        boolean matchesSearch1 = searchQuery.isEmpty() || "room 101".contains(searchQuery) || "studio".contains(searchQuery);
-        card1.setVisibility(matchesStatus1 && matchesSearch1 ? View.VISIBLE : View.GONE);
-
-        // Filter logic for Room 102 (Occupied)
-        boolean matchesStatus2 = currentStatus.equals("all") || currentStatus.equals("occupied");
-        boolean matchesSearch2 = searchQuery.isEmpty() || "room 102".contains(searchQuery) || "1 bedroom".contains(searchQuery);
-        card2.setVisibility(matchesStatus2 && matchesSearch2 ? View.VISIBLE : View.GONE);
-
-        // Filter logic for Room 103 (Vacant)
-        boolean matchesStatus3 = currentStatus.equals("all") || currentStatus.equals("vacant");
-        boolean matchesSearch3 = searchQuery.isEmpty() || "room 103".contains(searchQuery) || "studio".contains(searchQuery);
-        card3.setVisibility(matchesStatus3 && matchesSearch3 ? View.VISIBLE : View.GONE);
     }
 }

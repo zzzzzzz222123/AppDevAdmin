@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -217,54 +218,18 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Building / Property -->
-                <TextView
-                    android:id="@+id/lblBuilding"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Building / Property"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutRoomType" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutBuilding"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:boxBackgroundColor="#F9FAFB"
-                    app:boxCornerRadiusBottomEnd="14dp"
-                    app:boxCornerRadiusBottomStart="14dp"
-                    app:boxCornerRadiusTopEnd="14dp"
-                    app:boxCornerRadiusTopStart="14dp"
-                    app:hintEnabled="false"
-                    app:layout_constraintTop_toBottomOf="@id/lblBuilding">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/etBuilding"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:paddingVertical="18dp"
-                        android:text="Sunrise Residences"
-                        android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Monthly Rent & Status Row -->
                 <TextView
                     android:id="@+id/lblRent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
                     android:text="Monthly Rent"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutBuilding" />
+                    app:layout_constraintTop_toBottomOf="@+id/layoutRoomType" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutRent"

@@ -122,43 +122,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/icType" />
 
-                <!-- Building -->
-                <ImageView
-                    android:id="@+id/icBuilding"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/baseline_dashboard_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/icType"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Building"
-                    android:textColor="#555555"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="@id/icBuilding"
-                    app:layout_constraintStart_toEndOf="@id/icBuilding"
-                    app:layout_constraintTop_toTopOf="@id/icBuilding" />
-
-                <TextView
-                    android:id="@+id/valBuilding"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:gravity="end"
-                    android:text="Sunrise Residences"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/icBuilding"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/icBuilding"
-                    app:layout_constraintTop_toTopOf="@id/icBuilding" />
-
                 <!-- Monthly Rent -->
                 <ImageView
                     android:id="@+id/icRent"
@@ -167,7 +130,7 @@
                     android:layout_marginTop="16dp"
                     android:src="@drawable/outline_attach_money_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/valBuilding"
+                    app:layout_constraintTop_toBottomOf="@id/icType"
                     app:tint="#888888" />
 
                 <TextView
@@ -227,131 +190,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/icFloor" />
 
-                <View
-                    android:id="@+id/detailsDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="20dp"
-                    android:background="#F0F0F0"
-                    app:layout_constraintTop_toBottomOf="@id/icFloor" />
-
-                <!-- Tenant Information Section -->
-                <TextView
-                    android:id="@+id/lblTenantInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="TENANT INFORMATION"
-                    android:textColor="#888888"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/detailsDivider" />
-
-                <!-- Tenant Name Row -->
-                <ImageView
-                    android:id="@+id/icTenant"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/outline_article_person_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lblTenantInfo"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Tenant"
-                    android:textColor="#555555"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="@id/icTenant"
-                    app:layout_constraintStart_toEndOf="@id/icTenant"
-                    app:layout_constraintTop_toTopOf="@id/icTenant" />
-
-                <TextView
-                    android:id="@+id/valTenant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Maria Santos"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/icTenant"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/icTenant" />
-
-                <!-- Lease Start Row -->
-                <ImageView
-                    android:id="@+id/icLeaseStart"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@android:drawable/ic_menu_my_calendar"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/icTenant"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:id="@+id/lblLeaseStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Lease Start"
-                    android:textColor="#555555"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="@id/icLeaseStart"
-                    app:layout_constraintStart_toEndOf="@id/icLeaseStart"
-                    app:layout_constraintTop_toTopOf="@id/icLeaseStart" />
-
-                <TextView
-                    android:id="@+id/valLeaseStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jan 15, 2024"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/icLeaseStart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/icLeaseStart" />
-
-                <!-- Lease End Row -->
-                <ImageView
-                    android:id="@+id/icLeaseEnd"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@android:drawable/ic_menu_my_calendar"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/icLeaseStart"
-                    app:tint="#888888" />
-
-                <TextView
-                    android:id="@+id/lblLeaseEnd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Lease End"
-                    android:textColor="#555555"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="@id/icLeaseEnd"
-                    app:layout_constraintStart_toEndOf="@id/icLeaseEnd"
-                    app:layout_constraintTop_toTopOf="@id/icLeaseEnd" />
-
-                <TextView
-                    android:id="@+id/valLeaseEnd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jan 14, 2025"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/icLeaseEnd"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/icLeaseEnd" />
-
                 <!-- Action Buttons -->
                 <Button
                     android:id="@+id/btnCloseDetails"
@@ -369,7 +207,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/btnEditFromDetails"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/icLeaseEnd"
+                    app:layout_constraintTop_toBottomOf="@id/icFloor"
                     app:strokeColor="#EEEEEE"
                     app:strokeWidth="1dp" />
 

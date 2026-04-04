@@ -139,18 +139,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblStats">
 
-        <LinearLayout
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:paddingHorizontal="16dp"-->
+<!--            android:paddingBottom="16dp">-->
+
+<!--            <include android:id="@+id/cardRoom1" layout="@layout/item_room_occupied" />-->
+<!--            <include android:id="@+id/cardRoom2" layout="@layout/item_room_occupied" />-->
+<!--            <include android:id="@+id/cardRoom3" layout="@layout/item_room_vacant" />-->
+
+<!--        </LinearLayout>-->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRooms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingHorizontal="16dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="16dp"
+            android:clipToPadding="false" />
 
-            <include android:id="@+id/cardRoom1" layout="@layout/item_room_occupied" />
-            <include android:id="@+id/cardRoom2" layout="@layout/item_room_occupied" />
-            <include android:id="@+id/cardRoom3" layout="@layout/item_room_vacant" />
 
-        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

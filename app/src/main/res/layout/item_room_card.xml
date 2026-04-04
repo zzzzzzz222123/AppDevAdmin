@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvRoomBuilding"
+            android:id="@+id/tvRoomFloor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sunrise Residences"
@@ -64,8 +64,8 @@
             android:textColor="#2196F3"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tvRoomBuilding"
-            app:layout_constraintTop_toBottomOf="@id/tvRoomBuilding" />
+            app:layout_constraintStart_toStartOf="@id/tvRoomFloor"
+            app:layout_constraintTop_toBottomOf="@id/tvRoomFloor" />
 
         <TextView
             android:id="@+id/tvRoomStatus"
