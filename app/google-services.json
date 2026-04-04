@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "769941203988",
+    "project_id": "proptrack-e425f",
+    "storage_bucket": "proptrack-e425f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769941203988:android:90e5175453bf139b45cb01",
+        "android_client_info": {
+          "package_name": "com.example.appdevadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh-chHqozIUzLJBoRiOawmM6fET9BkZlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

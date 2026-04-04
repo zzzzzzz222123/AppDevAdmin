@@ -1,21 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")  // ADD THIS
 }
 
 android {
     namespace = "com.example.appdevadmin"
-    compileSdk = 36 // Note: Changed from 'version = release(36)' to standard syntax
+    compileSdk = 36  // bumped to 36 to satisfy dependencies
 
     defaultConfig {
         applicationId = "com.example.appdevadmin"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 35  // this can stay at 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -31,13 +31,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    // FIX: Move buildFeatures inside the android block
     buildFeatures {
         viewBinding = true
     }
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))  // ADD THIS
+    implementation("com.google.firebase:firebase-auth")                   // ADD THIS
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
