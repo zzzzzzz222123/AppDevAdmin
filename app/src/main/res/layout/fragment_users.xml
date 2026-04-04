@@ -80,16 +80,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userSearchView">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerUsers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingHorizontal="16dp"
-            android:paddingBottom="16dp">
-
-            <include android:id="@+id/cardUser1" layout="@layout/item_user_card" />
-
-        </LinearLayout>
+            android:paddingBottom="16dp"
+            android:clipToPadding="false" />
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

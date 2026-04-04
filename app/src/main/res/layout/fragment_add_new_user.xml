@@ -186,17 +186,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="Monthly Rent (₱) *"
+                android:hint="Monthly Rent (₱)"
                 app:expandedHintEnabled="false"
-                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
                 app:layout_constraintTop_toBottomOf="@id/layoutAssignRoom">
+
+
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etRent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Enter monthly rent" />
+                    android:hint="Auto-filled from room"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:inputType="none"
+                    android:textColor="#888888" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutRentDueDate"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Rent Due Date"
+                app:expandedHintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:helperText="e.g. Every 15th of the month"
+                app:layout_constraintTop_toBottomOf="@id/layoutRent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRentDueDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter due day (1-31)"
+                    android:inputType="number" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -211,7 +244,7 @@
                 app:endIconMode="custom"
                 app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
-                app:layout_constraintTop_toBottomOf="@id/layoutRent">
+                app:layout_constraintTop_toBottomOf="@id/layoutRentDueDate">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLeaseStart"
                     android:layout_width="match_parent"
@@ -220,6 +253,8 @@
                     android:clickable="true"
                     android:focusable="false" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutLeaseEnd"
