@@ -22,7 +22,8 @@ public class RoomDetailsDialogFragment extends DialogFragment {
     private static final String ARG_RENT = "monthly_rent";
     private static final String ARG_STATUS = "status";
 
-    // Factory method to pass room data
+    private RoomModel currentRoom;
+
     public static RoomDetailsDialogFragment newInstance(RoomModel room) {
         RoomDetailsDialogFragment fragment = new RoomDetailsDialogFragment();
         Bundle args = new Bundle();
@@ -49,28 +50,31 @@ public class RoomDetailsDialogFragment extends DialogFragment {
         TextView valRent = view.findViewById(R.id.valRent);
         TextView valFloor = view.findViewById(R.id.valFloor);
 
-        // Get arguments
+        // Get arguments and build currentRoom
         Bundle args = getArguments();
         if (args != null) {
-            String roomNumber = args.getString(ARG_ROOM_NUMBER);
-            String roomType = args.getString(ARG_ROOM_TYPE);
-            String floor = args.getString(ARG_FLOOR);
-            double rent = args.getDouble(ARG_RENT);
-            String status = args.getString(ARG_STATUS);
+            currentRoom = new RoomModel(
+                    args.getString(ARG_ROOM_ID),
+                    args.getString(ARG_ROOM_NUMBER),
+                    args.getString(ARG_ROOM_TYPE),
+                    args.getString(ARG_FLOOR),
+                    args.getDouble(ARG_RENT),
+                    args.getString(ARG_STATUS)
+            );
 
             // Populate views
-            txtRoomTitle.setText(roomNumber + " - " + roomType);
-            txtBuildingTitle.setText(floor);
-            valType.setText(roomType);
-            valFloor.setText(floor);
-            valRent.setText("₱" + String.format("%,.2f", rent) + "/mo");
-            badgeStatus.setText(status);
+            txtRoomTitle.setText(currentRoom.getRoomNumber() + " - " + currentRoom.getRoomType());
+            txtBuildingTitle.setText(currentRoom.getFloor());
+            valType.setText(currentRoom.getRoomType());
+            valFloor.setText(currentRoom.getFloor());
+            valRent.setText("₱" + String.format("%,.2f", currentRoom.getMonthlyRent()) + "/mo");
+            badgeStatus.setText(currentRoom.getStatus());
 
             // Status badge styling
-            if (status.equalsIgnoreCase("Occupied")) {
+            if (currentRoom.getStatus().equalsIgnoreCase("Occupied")) {
                 badgeStatus.setBackgroundResource(R.drawable.badge_occupied);
                 badgeStatus.setTextColor(Color.parseColor("#2E7D32"));
-            } else if (status.equalsIgnoreCase("Vacant")) {
+            } else if (currentRoom.getStatus().equalsIgnoreCase("Vacant")) {
                 badgeStatus.setBackgroundResource(R.drawable.badge_vacant);
                 badgeStatus.setTextColor(Color.parseColor("#1976D2"));
             } else {
@@ -79,11 +83,14 @@ public class RoomDetailsDialogFragment extends DialogFragment {
             }
         }
 
-        // Buttons
+        // Close button
         view.findViewById(R.id.btnCloseDetails).setOnClickListener(v -> dismiss());
+
+        // Edit button
         view.findViewById(R.id.btnEditFromDetails).setOnClickListener(v -> {
-            // Edit logic here later
             dismiss();
+            EditRoomDialogFragment editDialog = EditRoomDialogFragment.newInstance(currentRoom);
+            editDialog.show(getParentFragmentManager(), "EditRoomDialog");
         });
 
         return view;

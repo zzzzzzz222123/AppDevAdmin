@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -73,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Room 101 - Studio · Sunrise Residences"
+                    android:text="Room 101 - Studio"
                     android:textColor="#888888"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +132,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="18dp"
-                        android:text="Room 101 - Studio"
                         android:textColor="#000000"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -175,7 +173,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="none"
                         android:paddingVertical="18dp"
-                        android:text="Studio"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -213,17 +210,15 @@
                         android:layout_height="wrap_content"
                         android:inputType="none"
                         android:paddingVertical="18dp"
-                        android:text="1st Floor"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Building / Property -->
 
                 <!-- Monthly Rent & Status Row -->
                 <TextView
                     android:id="@+id/lblRent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
                     android:text="Monthly Rent"
                     android:textColor="#000000"
                     android:textSize="14sp"
@@ -256,7 +251,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
                         android:paddingVertical="18dp"
-                        android:text="8,500"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -295,141 +289,7 @@
                         android:inputType="none"
                         android:paddingVertical="18dp"
                         android:singleLine="true"
-                        android:text="Occupied"
                         android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Tenant Info Section -->
-                <TextView
-                    android:id="@+id/lblTenantHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="TENANT INFORMATION"
-                    android:textColor="#888888"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutRent" />
-
-                <TextView
-                    android:id="@+id/lblTenantName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Tenant Name"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lblTenantHeader" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutTenant"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:boxBackgroundColor="#F9FAFB"
-                    app:boxCornerRadiusBottomEnd="14dp"
-                    app:boxCornerRadiusBottomStart="14dp"
-                    app:boxCornerRadiusTopEnd="14dp"
-                    app:boxCornerRadiusTopStart="14dp"
-                    app:boxStrokeWidth="1dp"
-                    app:hintEnabled="false"
-                    app:layout_constraintTop_toBottomOf="@id/lblTenantName"
-                    app:startIconDrawable="@drawable/outline_article_person_24"
-                    app:startIconTint="#888888">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTenant"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="18dp"
-                        android:text="Maria Santos"
-                        android:textColor="#000000"
-                        android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Lease Dates Row -->
-                <TextView
-                    android:id="@+id/lblLeaseStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Lease Start"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutTenant" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutLeaseStart"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="12dp"
-                    app:boxBackgroundColor="#F9FAFB"
-                    app:boxCornerRadiusBottomEnd="14dp"
-                    app:boxCornerRadiusBottomStart="14dp"
-                    app:boxCornerRadiusTopEnd="14dp"
-                    app:boxCornerRadiusTopStart="14dp"
-                    app:hintEnabled="false"
-                    app:layout_constraintEnd_toStartOf="@+id/layoutLeaseEnd"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lblLeaseStart"
-                    app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etLeaseStart"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:inputType="none"
-                        android:paddingVertical="18dp"
-                        android:textSize="14sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/lblLeaseEnd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lease End"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/layoutLeaseEnd"
-                    app:layout_constraintTop_toTopOf="@id/lblLeaseStart" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutLeaseEnd"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:boxBackgroundColor="#F9FAFB"
-                    app:boxCornerRadiusBottomEnd="14dp"
-                    app:boxCornerRadiusBottomStart="14dp"
-                    app:boxCornerRadiusTopEnd="14dp"
-                    app:boxCornerRadiusTopStart="14dp"
-                    app:hintEnabled="false"
-                    app:layout_constraintBottom_toBottomOf="@id/layoutLeaseStart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toEndOf="@id/layoutLeaseStart"
-                    app:layout_constraintTop_toTopOf="@id/layoutLeaseStart"
-                    app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etLeaseEnd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:inputType="none"
-                        android:paddingVertical="18dp"
-                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Action Buttons -->
@@ -449,7 +309,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/btnSaveChanges"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutLeaseStart" />
+                    app:layout_constraintTop_toBottomOf="@id/layoutRent" />
 
                 <Button
                     android:id="@+id/btnSaveChanges"
