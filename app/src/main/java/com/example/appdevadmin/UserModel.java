@@ -14,15 +14,18 @@ public class UserModel {
     private String emergencyName;
     private String relationship;
     private String emergencyPhone;
+    private String roomId; // Moved to the top
     private String role;
 
+    // Empty constructor for Firebase
     public UserModel() {}
 
+    // Full constructor (15 parameters to match your Fragment logic)
     public UserModel(String uid, String fullName, String email, String phone,
                      String roomNumber, String leaseStart, String leaseEnd,
                      String status, double monthlyRent, int rentDueDate,
                      String emergencyName, String relationship,
-                     String emergencyPhone, String role) {
+                     String emergencyPhone, String roomId, String role) {
         this.uid = uid;
         this.fullName = fullName;
         this.email = email;
@@ -36,9 +39,11 @@ public class UserModel {
         this.emergencyName = emergencyName;
         this.relationship = relationship;
         this.emergencyPhone = emergencyPhone;
+        this.roomId = roomId;
         this.role = role;
     }
 
+    // Getters
     public String getUid() { return uid; }
     public String getFullName() { return fullName; }
     public String getEmail() { return email; }
@@ -52,5 +57,8 @@ public class UserModel {
     public String getEmergencyName() { return emergencyName; }
     public String getRelationship() { return relationship; }
     public String getEmergencyPhone() { return emergencyPhone; }
+    public String getRoomId() { return roomId; }
     public String getRole() { return role; }
+
+    // Pro-tip: Add Setters if you plan on using db.toObject(UserModel.class) later!
 }

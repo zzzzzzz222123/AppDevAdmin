@@ -30,6 +30,7 @@ public class userProfileFragment extends Fragment {
     private static final String ARG_RELATIONSHIP = "relationship";
     private static final String ARG_EMERGENCY_PHONE = "emergency_phone";
     private static final String ARG_ROLE = "role";
+    private static final String ARG_ROOM_ID = "room_id";
 
     public userProfileFragment() {}
 
@@ -50,6 +51,8 @@ public class userProfileFragment extends Fragment {
         args.putString(ARG_RELATIONSHIP, user.getRelationship());
         args.putString(ARG_EMERGENCY_PHONE, user.getEmergencyPhone());
         args.putString(ARG_ROLE, user.getRole());
+        // Inside your userProfileFragment.newInstance(UserModel user)
+        args.putString(ARG_ROOM_ID, user.getRoomId());
         fragment.setArguments(args);
         return fragment;
     }
@@ -141,11 +144,33 @@ public class userProfileFragment extends Fragment {
         // Edit Profile button
         Button btnEdit = view.findViewById(R.id.btnEditProfile);
         if (btnEdit != null) {
+            // Inside userProfileFragment.java, find your btnEdit listener:
             btnEdit.setOnClickListener(v -> {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frameLayout, new editUserProfileFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if (args != null) {
+                    UserModel user = new UserModel(
+                            args.getString(ARG_UID),             // 1
+                            args.getString(ARG_FULL_NAME),       // 2
+                            args.getString(ARG_EMAIL),           // 3
+                            args.getString(ARG_PHONE),           // 4
+                            args.getString(ARG_ROOM_NUMBER),     // 5
+                            args.getString(ARG_LEASE_START),     // 6
+                            args.getString(ARG_LEASE_END),       // 7
+                            args.getString(ARG_STATUS),          // 8
+                            args.getDouble(ARG_MONTHLY_RENT),    // 9
+                            args.getInt(ARG_RENT_DUE_DATE),      // 10
+                            args.getString(ARG_EMERGENCY_NAME),  // 11
+                            args.getString(ARG_RELATIONSHIP),    // 12
+                            args.getString(ARG_EMERGENCY_PHONE), // 13
+                            args.getString(ARG_ROOM_ID),         // 14 - THE MISSING ID
+                            args.getString(ARG_ROLE)             // 15
+                    );
+
+                    editUserProfileFragment editFragment = editUserProfileFragment.newInstance(user);
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frameLayout, editFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
             });
         }
     }

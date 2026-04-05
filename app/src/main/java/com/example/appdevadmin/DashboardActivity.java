@@ -20,6 +20,8 @@ public class DashboardActivity extends AppCompatActivity {
         binding = DashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        new BillingManager().runBillingCheck();
+
         // Default Fragment
         if (savedInstanceState == null) {
             replaceFragment(new dashboardFragment());

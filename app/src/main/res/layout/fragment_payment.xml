@@ -69,7 +69,14 @@
                 android:gravity="center"
                 android:padding="8dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Collected" android:textColor="#666" android:textSize="11sp"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="₱156,500" android:textColor="#00897B" android:textStyle="bold" android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tvCollectedAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₱0"
+                    android:textColor="#00897B"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -90,7 +97,14 @@
                 android:gravity="center"
                 android:padding="8dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pending" android:textColor="#666" android:textSize="11sp"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="₱42,000" android:textColor="#FBC02D" android:textStyle="bold" android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tvPendingAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₱0"
+                    android:textColor="#FBC02D"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -110,7 +124,14 @@
                 android:gravity="center"
                 android:padding="8dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Overdue" android:textColor="#666" android:textSize="11sp"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="₱15,000" android:textColor="#D32F2F" android:textStyle="bold" android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tvOverdueAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₱0"
+                    android:textColor="#D32F2F"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
@@ -181,7 +202,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#2F80ED"
-        android:text="+ Record Payment"
+        android:text="+ Add Invoice"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:cornerRadius="12dp"
@@ -195,18 +216,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnRecordPayment">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPayments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingHorizontal="16dp"
-            android:paddingBottom="16dp">
-
-            <include android:id="@+id/itemPaidExample" layout="@layout/item_payment_paid" />
-            <include android:id="@+id/itemPendingExample" layout="@layout/item_payment_pending" />
-            <include android:id="@+id/itemOverdueExample" layout="@layout/item_payment_overdue" />
-
-        </LinearLayout>
+            android:paddingBottom="16dp"
+            android:clipToPadding="false" />
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

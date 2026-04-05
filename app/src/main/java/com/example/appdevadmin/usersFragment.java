@@ -125,6 +125,7 @@ public class usersFragment extends Fragment {
                                 doc.getString("emergencyName") != null ? doc.getString("emergencyName") : "",
                                 doc.getString("relationship") != null ? doc.getString("relationship") : "",
                                 doc.getString("emergencyPhone") != null ? doc.getString("emergencyPhone") : "",
+                                doc.getString("roomId") != null ? doc.getString("roomId") : "",
                                 doc.getString("role") != null ? doc.getString("role") : "Tenant"
                         );
                         allUsers.add(user);
