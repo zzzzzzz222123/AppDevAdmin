@@ -59,8 +59,11 @@ public class paymentFragment extends Fragment {
 
         // RecyclerView
         recyclerPayments = view.findViewById(R.id.recyclerPayments);
+        // Inside onViewCreated in paymentFragment.java
         adapter = new PaymentAdapter(requireContext(), new ArrayList<>(), payment -> {
-            // Handle payment click - navigate to details later
+            // This code runs when a row is clicked
+            PaymentDetailDialog dialog = PaymentDetailDialog.newInstance(payment);
+            dialog.show(getChildFragmentManager(), "PaymentDetail");
         });
         recyclerPayments.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerPayments.setAdapter(adapter);

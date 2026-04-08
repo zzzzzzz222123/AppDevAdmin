@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button; // Import Button
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,9 @@ public class RoomDetailsDialogFragment extends DialogFragment {
         TextView valRent = view.findViewById(R.id.valRent);
         TextView valFloor = view.findViewById(R.id.valFloor);
 
+        // NEW: History Button View
+        Button btnViewHistory = view.findViewById(R.id.btnViewHistory);
+
         // Get arguments and build currentRoom
         Bundle args = getArguments();
         if (args != null) {
@@ -83,12 +87,23 @@ public class RoomDetailsDialogFragment extends DialogFragment {
             }
         }
 
+        // --- BUTTON LISTENERS ---
+
+        // NEW: View Renters History Logic
+        if (btnViewHistory != null) {
+            btnViewHistory.setOnClickListener(v -> {
+                // We keep this dialog open and show the history dialog on top
+                RenterHistoryDialog historyDialog = RenterHistoryDialog.newInstance(currentRoom.getRoomNumber());
+                historyDialog.show(getParentFragmentManager(), "RenterHistoryDialog");
+            });
+        }
+
         // Close button
         view.findViewById(R.id.btnCloseDetails).setOnClickListener(v -> dismiss());
 
         // Edit button
         view.findViewById(R.id.btnEditFromDetails).setOnClickListener(v -> {
-            dismiss();
+            dismiss(); // Usually we dismiss the current one before opening Edit
             EditRoomDialogFragment editDialog = EditRoomDialogFragment.newInstance(currentRoom);
             editDialog.show(getParentFragmentManager(), "EditRoomDialog");
         });
