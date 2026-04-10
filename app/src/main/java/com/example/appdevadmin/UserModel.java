@@ -14,13 +14,13 @@ public class UserModel {
     private String emergencyName;
     private String relationship;
     private String emergencyPhone;
-    private String roomId; // Moved to the top
+    private String roomId;
     private String role;
 
     // Empty constructor for Firebase
     public UserModel() {}
 
-    // Full constructor (15 parameters to match your Fragment logic)
+    // Full constructor
     public UserModel(String uid, String fullName, String email, String phone,
                      String roomNumber, String leaseStart, String leaseEnd,
                      String status, double monthlyRent, int rentDueDate,
@@ -43,7 +43,7 @@ public class UserModel {
         this.role = role;
     }
 
-    // Getters
+    // --- GETTERS ---
     public String getUid() { return uid; }
     public String getFullName() { return fullName; }
     public String getEmail() { return email; }
@@ -60,5 +60,20 @@ public class UserModel {
     public String getRoomId() { return roomId; }
     public String getRole() { return role; }
 
-    // Pro-tip: Add Setters if you plan on using db.toObject(UserModel.class) later!
+    // --- SETTERS (ADDED THESE TO FIX YOUR ERROR) ---
+    public void setUid(String uid) { this.uid = uid; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
+    public void setEmail(String email) { this.email = email; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
+    public void setLeaseStart(String leaseStart) { this.leaseStart = leaseStart; }
+    public void setLeaseEnd(String leaseEnd) { this.leaseEnd = leaseEnd; }
+    public void setStatus(String status) { this.status = status; }
+    public void setMonthlyRent(double monthlyRent) { this.monthlyRent = monthlyRent; }
+    public void setRentDueDate(int rentDueDate) { this.rentDueDate = rentDueDate; }
+    public void setEmergencyName(String emergencyName) { this.emergencyName = emergencyName; }
+    public void setRelationship(String relationship) { this.relationship = relationship; }
+    public void setEmergencyPhone(String emergencyPhone) { this.emergencyPhone = emergencyPhone; }
+    public void setRoomId(String roomId) { this.roomId = roomId; }
+    public void setRole(String role) { this.role = role; }
 }

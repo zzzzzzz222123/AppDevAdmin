@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="#F0F0F0"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Icon Container -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/logIconContainer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardBackgroundColor="#E6F4EA"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivLogIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/outline_attach_money_24"
+                app:tint="#1E8E3E" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Log Title -->
+        <TextView
+            android:id="@+id/tvLogTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:text="Payment from Unit 101"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/tvLogTime"
+            app:layout_constraintStart_toEndOf="@id/logIconContainer"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Log Details -->
+        <TextView
+            android:id="@+id/tvLogDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="₱8,500 — Rent payment"
+            android:textColor="#777777"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@+id/tvLogTitle"
+            app:layout_constraintStart_toStartOf="@id/tvLogTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvLogTitle" />
+
+        <!-- Timestamp -->
+        <TextView
+            android:id="@+id/tvLogTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2h ago"
+            android:textColor="#AAAAAA"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Small Arrow Icon -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

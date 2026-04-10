@@ -28,18 +28,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btnPaymentFilterIcon"
-            android:layout_width="45dp"
-            android:layout_height="46dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/filter_svgrepo_com"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#000000" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Summary Stats Row -->

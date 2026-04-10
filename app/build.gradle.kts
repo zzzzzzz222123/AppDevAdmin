@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation("com.cloudinary:cloudinary-android:2.1.0")
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))  // ADD THIS
     implementation("com.google.firebase:firebase-auth")                   // ADD THIS
     implementation("com.google.firebase:firebase-firestore")

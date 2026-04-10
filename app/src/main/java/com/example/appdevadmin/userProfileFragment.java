@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -141,6 +142,8 @@ public class userProfileFragment extends Fragment {
             btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
         }
 
+
+
         // Edit Profile button
         Button btnEdit = view.findViewById(R.id.btnEditProfile);
         if (btnEdit != null) {
@@ -161,7 +164,7 @@ public class userProfileFragment extends Fragment {
                             args.getString(ARG_EMERGENCY_NAME),  // 11
                             args.getString(ARG_RELATIONSHIP),    // 12
                             args.getString(ARG_EMERGENCY_PHONE), // 13
-                            args.getString(ARG_ROOM_ID),         // 14 - THE MISSING ID
+                            args.getString(ARG_ROOM_ID),         // 14
                             args.getString(ARG_ROLE)             // 15
                     );
 
@@ -173,6 +176,83 @@ public class userProfileFragment extends Fragment {
                 }
             });
         }
+
+        if (args != null) {
+            loadPaymentHistory(args.getString(ARG_UID), view);
+        }
+    }
+
+
+    private void loadPaymentHistory(String uid, View view) {
+        LinearLayout historyContainer = view.findViewById(R.id.layoutPaymentHistory);
+        com.google.firebase.firestore.FirebaseFirestore db = com.google.firebase.firestore.FirebaseFirestore.getInstance();
+
+        db.collection("payments")
+                .whereEqualTo("userId", uid)
+                .whereEqualTo("type", "Monthly Rent") // <-- ADD THIS LINE
+                .limit(4)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    historyContainer.removeAllViews();
+                    if (queryDocumentSnapshots.isEmpty()) {
+                        TextView tvEmpty = new TextView(getContext());
+                        tvEmpty.setText("No monthly rent records.");
+                        tvEmpty.setTextColor(Color.GRAY);
+                        historyContainer.addView(tvEmpty);
+                        return;
+                    }
+
+                    for (com.google.firebase.firestore.QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        String month = doc.getString("month");
+                        Object yearObj = doc.get("year");
+                        String year = (yearObj != null) ? yearObj.toString() : "";
+                        String status = doc.getString("status");
+
+                        addPaymentRow(historyContainer, month + " " + year, status);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    android.util.Log.e("PAYMENT_DEBUG", "Query Failed: " + e.getMessage());
+                    historyContainer.removeAllViews();
+                    TextView tvError = new TextView(getContext());
+                    tvError.setText("Error loading history. Check Index.");
+                    historyContainer.addView(tvError);
+                });
+    }
+
+    private void addPaymentRow(LinearLayout container, String monthYear, String status) {
+        // 1. Create a View for the row (Inflating a simple row layout)
+        View row = getLayoutInflater().inflate(R.layout.item_payment_history_row, container, false);
+
+        TextView tvMonth = row.findViewById(R.id.tvHistoryMonth);
+        TextView tvStatus = row.findViewById(R.id.tvHistoryStatus);
+
+        tvMonth.setText("● " + monthYear);
+
+        // 2. Style the row based on status
+        if ("Paid".equalsIgnoreCase(status)) {
+            tvMonth.setTextColor(Color.parseColor("#00C853")); // Green Dot
+            tvStatus.setText("Paid");
+            tvStatus.setBackgroundResource(R.drawable.badge_occupied);
+            tvStatus.setTextColor(Color.parseColor("#2E7D32"));
+        } else if ("Overdue".equalsIgnoreCase(status)) {
+            tvMonth.setTextColor(Color.parseColor("#D32F2F")); // Red Dot
+            tvStatus.setText("Overdue");
+            tvStatus.setBackgroundResource(R.drawable.badge_overdue);
+            tvStatus.setTextColor(Color.parseColor("#C62828"));
+        } else {
+            tvMonth.setTextColor(Color.parseColor("#FFA000")); // Yellow Dot
+            tvStatus.setText("Pending");
+            tvStatus.setBackgroundResource(R.drawable.badge_vacant);
+            tvStatus.setTextColor(Color.parseColor("#1976D2"));
+        }
+
+        container.addView(row);
+
+        // 3. Add a small space/divider between rows
+        View space = new View(getContext());
+        space.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
+        container.addView(space);
     }
 
     // Helper to get ordinal suffix (1st, 2nd, 3rd...)

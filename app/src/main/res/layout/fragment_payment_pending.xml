@@ -198,6 +198,37 @@
                 app:layout_constraintBaseline_toBaselineOf="@id/lblRemaining"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <TextView
+                android:id="@+id/lblNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Notes"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblRemaining" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/notesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="#F9F9F9"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/lblNotes">
+
+                <TextView
+                    android:id="@+id/tvNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="No additional notes."
+                    android:textColor="#555555"
+                    android:textSize="13sp" />
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSendReminder"
                 android:layout_width="0dp"
@@ -225,7 +256,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnRecordPayment"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lblRemaining" />
+                app:layout_constraintTop_toBottomOf="@id/notesContainer" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRecordPayment"

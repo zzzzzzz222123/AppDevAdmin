@@ -7,12 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button; // Import Button
+import android.widget.Button;
+import android.widget.ImageView; // Added
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+import com.squareup.picasso.Picasso; // Added Picasso
 
 public class RoomDetailsDialogFragment extends DialogFragment {
 
@@ -22,6 +25,7 @@ public class RoomDetailsDialogFragment extends DialogFragment {
     private static final String ARG_FLOOR = "floor";
     private static final String ARG_RENT = "monthly_rent";
     private static final String ARG_STATUS = "status";
+    private static final String ARG_IMAGE_URL = "image_url"; // Added
 
     private RoomModel currentRoom;
 
@@ -34,6 +38,7 @@ public class RoomDetailsDialogFragment extends DialogFragment {
         args.putString(ARG_FLOOR, room.getFloor());
         args.putDouble(ARG_RENT, room.getMonthlyRent());
         args.putString(ARG_STATUS, room.getStatus());
+        args.putString(ARG_IMAGE_URL, room.getImageUrl()); // Add image to arguments
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,13 +55,13 @@ public class RoomDetailsDialogFragment extends DialogFragment {
         TextView valType = view.findViewById(R.id.valType);
         TextView valRent = view.findViewById(R.id.valRent);
         TextView valFloor = view.findViewById(R.id.valFloor);
-
-        // NEW: History Button View
+        ImageView imgRoomDetail = view.findViewById(R.id.imgRoomDetail); // Added ImageView ID
         Button btnViewHistory = view.findViewById(R.id.btnViewHistory);
 
         // Get arguments and build currentRoom
         Bundle args = getArguments();
         if (args != null) {
+            // Re-creating the RoomModel with the Image URL
             currentRoom = new RoomModel(
                     args.getString(ARG_ROOM_ID),
                     args.getString(ARG_ROOM_NUMBER),
@@ -65,14 +70,28 @@ public class RoomDetailsDialogFragment extends DialogFragment {
                     args.getDouble(ARG_RENT),
                     args.getString(ARG_STATUS)
             );
+            currentRoom.setImageUrl(args.getString(ARG_IMAGE_URL)); // Manually set the image URL
 
-            // Populate views
+            // Populate text views
             txtRoomTitle.setText(currentRoom.getRoomNumber() + " - " + currentRoom.getRoomType());
-            txtBuildingTitle.setText(currentRoom.getFloor());
+            txtBuildingTitle.setText("Sunrise Residences"); // Or keep as floor if preferred
             valType.setText(currentRoom.getRoomType());
             valFloor.setText(currentRoom.getFloor());
             valRent.setText("₱" + String.format("%,.2f", currentRoom.getMonthlyRent()) + "/mo");
             badgeStatus.setText(currentRoom.getStatus());
+
+            // --- LOAD IMAGE WITH PICASSO ---
+            if (currentRoom.getImageUrl() != null && !currentRoom.getImageUrl().isEmpty()) {
+                Picasso.get()
+                        .load(currentRoom.getImageUrl())
+                        .placeholder(android.R.drawable.ic_menu_report_image)
+                        .error(android.R.drawable.ic_menu_gallery)
+                        .fit()
+                        .centerCrop()
+                        .into(imgRoomDetail);
+            } else {
+                imgRoomDetail.setImageResource(android.R.drawable.ic_menu_gallery);
+            }
 
             // Status badge styling
             if (currentRoom.getStatus().equalsIgnoreCase("Occupied")) {
@@ -88,22 +107,17 @@ public class RoomDetailsDialogFragment extends DialogFragment {
         }
 
         // --- BUTTON LISTENERS ---
-
-        // NEW: View Renters History Logic
         if (btnViewHistory != null) {
             btnViewHistory.setOnClickListener(v -> {
-                // We keep this dialog open and show the history dialog on top
                 RenterHistoryDialog historyDialog = RenterHistoryDialog.newInstance(currentRoom.getRoomNumber());
                 historyDialog.show(getParentFragmentManager(), "RenterHistoryDialog");
             });
         }
 
-        // Close button
         view.findViewById(R.id.btnCloseDetails).setOnClickListener(v -> dismiss());
 
-        // Edit button
         view.findViewById(R.id.btnEditFromDetails).setOnClickListener(v -> {
-            dismiss(); // Usually we dismiss the current one before opening Edit
+            dismiss();
             EditRoomDialogFragment editDialog = EditRoomDialogFragment.newInstance(currentRoom);
             editDialog.show(getParentFragmentManager(), "EditRoomDialog");
         });

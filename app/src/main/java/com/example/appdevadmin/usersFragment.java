@@ -43,9 +43,7 @@ public class usersFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
-        recyclerUsers = view.findViewById(R.id.recyclerUsers);
-        ImageButton btnFilter = view.findViewById(R.id.btnUserFilter);
-        Button btnAdd = view.findViewById(R.id.btnAddUser);
+        recyclerUsers = view.findViewById(R.id.recyclerUsers);Button btnAdd = view.findViewById(R.id.btnAddUser);
         androidx.appcompat.widget.SearchView searchView = view.findViewById(R.id.userSearchView);
 
         // Setup RecyclerView
@@ -93,15 +91,7 @@ public class usersFragment extends Fragment {
         }
 
         // Filter
-        if (btnFilter != null) {
-            btnFilter.setOnClickListener(v -> {
-                PopupMenu popup = new PopupMenu(requireContext(), v);
-                popup.getMenu().add("Name");
-                popup.getMenu().add("Unit");
-                popup.getMenu().add("Status");
-                popup.show();
-            });
-        }
+
     }
 
     private void loadUsers() {

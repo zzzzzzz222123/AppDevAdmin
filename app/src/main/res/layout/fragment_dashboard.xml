@@ -126,9 +126,11 @@
                 app:layout_constraintTop_toBottomOf="@id/icIncome"
                 app:layout_constraintStart_toStartOf="parent" />
             <TextView
+                android:id="@+id/valIncomeSub"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="↗ +12% this month"
+                android:text="↗ +67% this month"
                 android:textColor="#2E7D32"
                 android:textSize="10sp"
                 app:layout_constraintTop_toBottomOf="@id/valIncome"
@@ -184,6 +186,7 @@
                 app:layout_constraintTop_toBottomOf="@id/icPending"
                 app:layout_constraintStart_toStartOf="parent" />
             <TextView
+                android:id="@+id/valPendingSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="₱42,000 outstanding"
@@ -243,6 +246,8 @@
                 app:layout_constraintTop_toBottomOf="@id/icOccupancy"
                 app:layout_constraintStart_toStartOf="parent" />
             <TextView
+                android:id="@+id/valOccupancySub"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="17/20 units"
@@ -356,70 +361,12 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Activity 1 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerRecentActivity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/actIc1"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    app:cardBackgroundColor="#E6F4EA"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_attach_money_24" app:tint="#1E8E3E" />
-                </com.google.android.material.card.MaterialCardView>
-                <TextView android:id="@+id/actT1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Payment from Unit 101" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/actIc1" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/actTm1"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="₱8,500 — Rent payment" android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/actT1" app:layout_constraintTop_toBottomOf="@id/actT1" />
-                <TextView android:id="@+id/actTm1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2h ago" android:textColor="#AAA" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginVertical="12dp"/>
-
-            <!-- Activity 2 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/actIc2"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    app:cardBackgroundColor="#E9F2FF"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_article_person_24" app:tint="#2F80ED" />
-                </com.google.android.material.card.MaterialCardView>
-                <TextView android:id="@+id/actT2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="New Lease: Ana Cruz" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/actIc2" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/actTm2"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Unit 105 — Approved" android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/actT2" app:layout_constraintTop_toBottomOf="@id/actT2" />
-                <TextView android:id="@+id/actTm2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5h ago" android:textColor="#AAA" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginVertical="12dp"/>
-
-            <!-- Activity 3 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/actIc3"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    app:cardBackgroundColor="#FFF9E6"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/outline_badminton_24" app:tint="#FBC02D" />
-                </com.google.android.material.card.MaterialCardView>
-                <TextView android:id="@+id/actT3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Maintenance Completed" android:textStyle="bold" android:textColor="#000" app:layout_constraintStart_toEndOf="@id/actIc3" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/actTm3"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Room 302 — Fix Clogged Drain" android:textColor="#888" android:textSize="12sp" app:layout_constraintStart_toStartOf="@id/actT3" app:layout_constraintTop_toBottomOf="@id/actT3" />
-                <TextView android:id="@+id/actTm3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1d ago" android:textColor="#AAA" android:textSize="11sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

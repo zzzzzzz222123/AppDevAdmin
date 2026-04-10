@@ -55,7 +55,6 @@ public class roomFragment extends Fragment {
         btnVacant = view.findViewById(R.id.btnFilterVacant);
         lblStats = view.findViewById(R.id.lblStats);
         searchView = view.findViewById(R.id.searchView);
-        btnFilter = view.findViewById(R.id.btnFilter);
         btnAdd = view.findViewById(R.id.btnAdd);
         recyclerRooms = view.findViewById(R.id.recyclerRooms);
 
@@ -101,9 +100,7 @@ public class roomFragment extends Fragment {
             }
         });
 
-        btnFilter.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Advanced Filter Clicked", Toast.LENGTH_SHORT).show()
-        );
+
     }
 
     private void loadRooms() {
@@ -115,11 +112,15 @@ public class roomFragment extends Fragment {
                     for (QueryDocumentSnapshot doc : snapshots) {
                         RoomModel room = new RoomModel(
                                 doc.getId(),
+
                                 doc.getString("roomNumber"),
                                 doc.getString("roomType"),
                                 doc.getString("floor"),
                                 doc.getDouble("monthlyRent") != null ? doc.getDouble("monthlyRent") : 0,
-                                doc.getString("status")
+                                doc.getString("status"),
+                                doc.getString("imageUrl") // <--- ADD THIS LINE
+
+
                         );
                         allRooms.add(room);
                     }

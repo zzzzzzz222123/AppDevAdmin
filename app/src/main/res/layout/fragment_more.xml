@@ -212,64 +212,6 @@
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginHorizontal="16dp"/>
 
                     <!-- Reports -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btnReports"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="16dp">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/icReportsContainer"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            app:cardBackgroundColor="#F5F6F8"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/reports_svgrepo_com"
-                                app:tint="#555555" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <TextView
-                            android:id="@+id/tvReports"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Reports"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/arrowReports"
-                            app:layout_constraintStart_toEndOf="@id/icReportsContainer"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Generate &amp; view reports"
-                            android:textColor="#888888"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toStartOf="@+id/arrowReports"
-                            app:layout_constraintStart_toStartOf="@id/tvReports"
-                            app:layout_constraintTop_toBottomOf="@id/tvReports" />
-
-                        <ImageView
-                            android:id="@+id/arrowReports"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@android:drawable/ic_media_play"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#CCCCCC" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

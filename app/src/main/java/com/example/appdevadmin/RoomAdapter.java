@@ -5,10 +5,13 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,12 +42,27 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     public void onBindViewHolder(@NonNull RoomViewHolder holder, int position) {
         RoomModel room = roomList.get(position);
 
+        // 1. Set Text Data
         holder.tvRoomName.setText(room.getRoomNumber() + " - " + room.getRoomType());
         holder.tvRoomFloor.setText(room.getFloor());
         holder.tvRoomPrice.setText("₱" + String.format("%,.2f", room.getMonthlyRent()) + "/mo");
         holder.tvRoomStatus.setText(room.getStatus());
 
-        // Status badge styling
+        // 2. Load Image with Picasso
+        if (room.getImageUrl() != null && !room.getImageUrl().isEmpty()) {
+            Picasso.get()
+                    .load(room.getImageUrl())
+                    .placeholder(android.R.drawable.ic_menu_report_image) // Show while loading
+                    .error(android.R.drawable.ic_menu_gallery)           // Show if URL is broken
+                    .fit()                                               // Resize to fit ImageView
+                    .centerCrop()                                        // Crop to avoid stretching
+                    .into(holder.imgRoom);
+        } else {
+            // Default placeholder if no URL is saved in Firestore
+            holder.imgRoom.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
+
+        // 3. Status badge styling
         if (room.getStatus().equalsIgnoreCase("Occupied")) {
             holder.tvRoomStatus.setBackgroundResource(R.drawable.badge_occupied);
             holder.tvRoomStatus.setTextColor(Color.parseColor("#2E7D32"));
@@ -52,10 +70,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             holder.tvRoomStatus.setBackgroundResource(R.drawable.badge_vacant);
             holder.tvRoomStatus.setTextColor(Color.parseColor("#1976D2"));
         } else {
+            // Under Maintenance or other statuses
             holder.tvRoomStatus.setBackgroundResource(R.drawable.badge_vacant);
             holder.tvRoomStatus.setTextColor(Color.parseColor("#F57C00"));
         }
 
+        // 4. Click Listener
         holder.itemView.setOnClickListener(v -> listener.onRoomClick(room));
     }
 
@@ -71,6 +91,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
     static class RoomViewHolder extends RecyclerView.ViewHolder {
         TextView tvRoomName, tvRoomFloor, tvRoomPrice, tvRoomStatus;
+        ImageView imgRoom;
 
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +99,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             tvRoomFloor = itemView.findViewById(R.id.tvRoomFloor);
             tvRoomPrice = itemView.findViewById(R.id.tvRoomPrice);
             tvRoomStatus = itemView.findViewById(R.id.tvRoomStatus);
+            imgRoom = itemView.findViewById(R.id.imgRoom);
         }
     }
 }

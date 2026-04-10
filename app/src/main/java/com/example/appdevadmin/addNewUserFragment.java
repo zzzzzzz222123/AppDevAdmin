@@ -129,7 +129,7 @@ public class addNewUserFragment extends Fragment {
     }
 
     private void saveUser(View view) {
-        // 1. Extract values from EditTexts
+        // 1. Extract values
         String fullName = etFullName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
@@ -138,7 +138,7 @@ public class addNewUserFragment extends Fragment {
         String leaseEnd = etLeaseEnd.getText().toString().trim();
         String rentDueDate = etRentDueDate.getText().toString().trim();
 
-        // 2. Simple Validations
+        // 2. Validations (Same as before)
         if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(getContext(), "Fill in required fields", Toast.LENGTH_SHORT).show();
             return;
@@ -156,7 +156,7 @@ public class addNewUserFragment extends Fragment {
                     String uid = authResult.getUser().getUid();
                     WriteBatch batch = db.batch();
 
-                    // 4. Create User Document Map (General Info)
+                    // 4. Main User Document
                     Map<String, Object> userMap = new HashMap<>();
                     userMap.put("uid", uid);
                     userMap.put("fullName", fullName);
@@ -166,6 +166,8 @@ public class addNewUserFragment extends Fragment {
                     userMap.put("createdAt", com.google.firebase.Timestamp.now());
 
                     if (role.equals("Tenant")) {
+                        String formattedRent = String.format("₱%,.2f", selectedRoom.getMonthlyRent());
+
                         userMap.put("roomId", selectedRoom.getId());
                         userMap.put("roomNumber", selectedRoom.getRoomNumber());
                         userMap.put("monthlyRent", selectedRoom.getMonthlyRent());
@@ -173,40 +175,58 @@ public class addNewUserFragment extends Fragment {
                         userMap.put("leaseStart", leaseStart);
                         userMap.put("leaseEnd", leaseEnd);
 
-                        // 5. PREPARE EXACT ROOM HISTORY DATA
+                        // 5. Room History Entry
                         Map<String, Object> historyMap = new HashMap<>();
-                        historyMap.put("createdAt", com.google.firebase.Timestamp.now()); // Timestamp
-                        historyMap.put("leaseEnd", leaseEnd);                             // String
-                        historyMap.put("leaseStart", leaseStart);                         // String
-                        historyMap.put("status", "Current");                              // String
-                        historyMap.put("tenantId", uid);                                  // String
-                        historyMap.put("tenantName", fullName);                           // String
+                        historyMap.put("createdAt", com.google.firebase.Timestamp.now());
+                        historyMap.put("leaseEnd", leaseEnd);
+                        historyMap.put("leaseStart", leaseStart);
+                        historyMap.put("status", "Current");
+                        historyMap.put("tenantId", uid);
+                        historyMap.put("tenantName", fullName);
 
-                        // Task: Update Room status to Occupied
+                        // 6. LOGS -> TenantsLogs
+                        // Inside saveUser method in addNewUserFragment...
+
+// 6. LOGS -> Unified Activity Logs
+                        Map<String, Object> tenantLog = new HashMap<>();
+                        tenantLog.put("title", "New Lease: " + fullName);
+                        tenantLog.put("details", selectedRoom.getRoomNumber() + " • " + formattedRent);
+                        tenantLog.put("timestamp", com.google.firebase.Timestamp.now());
+                        tenantLog.put("type", "tenant"); // TAG AS TENANT
+
+                        Map<String, Object> roomLog = new HashMap<>();
+                        roomLog.put("title", "Room " + selectedRoom.getRoomNumber() + " is now Occupied");
+                        roomLog.put("details", "Floor " + selectedRoom.getFloor() + " • " + formattedRent);
+                        roomLog.put("timestamp", com.google.firebase.Timestamp.now());
+                        roomLog.put("type", "room"); // TAG AS ROOM
+
+// ADD TO BATCH
+                        batch.set(db.collection("activity_logs").document(), tenantLog);
+                        batch.set(db.collection("activity_logs").document(), roomLog);
+                        // --- BATCH OPERATIONS ---
+
+                        // Task: Update Room status
                         batch.update(db.collection("rooms").document(selectedRoom.getId()), "status", "Occupied");
 
-                        // Task: Create new entry in the roomHistory sub-collection
-                        DocumentReference historyRef = db.collection("rooms")
-                                .document(selectedRoom.getId())
-                                .collection("roomHistory")
-                                .document(); // Auto-generates document ID
-                        batch.set(historyRef, historyMap);
+                        // Task: Add Room History
+                        batch.set(db.collection("rooms").document(selectedRoom.getId())
+                                .collection("roomHistory").document(), historyMap);
+
+
                     }
 
-                    // Task: Save the main User document
+                    // Task: Save User Profile
                     batch.set(db.collection("users").document(uid), userMap);
 
-                    // 6. Commit all changes together
+                    // 8. Commit All
                     batch.commit().addOnSuccessListener(unused -> {
                         if (isAdded()) {
-                            Toast.makeText(getContext(), "User added and history recorded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "User created and logs updated", Toast.LENGTH_SHORT).show();
                             requireActivity().onBackPressed();
                         }
                     }).addOnFailureListener(e -> {
-                        if (isAdded()) {
-                            view.findViewById(R.id.btnSaveUser).setEnabled(true);
-                            Toast.makeText(getContext(), "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                        view.findViewById(R.id.btnSaveUser).setEnabled(true);
+                        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
                 })
                 .addOnFailureListener(e -> {

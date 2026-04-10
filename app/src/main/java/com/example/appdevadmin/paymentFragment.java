@@ -79,8 +79,15 @@ public class paymentFragment extends Fragment {
 
         // Add Invoice button
         view.findViewById(R.id.btnRecordPayment).setOnClickListener(v -> {
+            recordPaymentFragment fragment = new recordPaymentFragment();
+
+            // PASS THE BUNDLE HERE
+            Bundle args = new Bundle();
+            args.putBoolean("isInvoice", true);
+            fragment.setArguments(args);
+
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.frameLayout, new recordPaymentFragment());
+            transaction.replace(R.id.frameLayout, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
         });
