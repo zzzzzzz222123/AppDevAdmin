@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F9FA">
@@ -60,7 +59,7 @@
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Search & Filter Section -->
+    <!-- Search -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/maintenanceSearchView"
         android:layout_width="match_parent"
@@ -72,10 +71,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerMaintenance"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="Search requests..."
-        app:searchIcon="@drawable/search" />
+        app:queryHint="Search requests..." />
 
-    <!-- Status Tabs -->
+    <!-- Filter Tabs -->
     <LinearLayout
         android:id="@+id/maintenanceFilterContainer"
         android:layout_width="match_parent"
@@ -144,18 +142,20 @@
         app:layout_constraintTop_toBottomOf="@id/maintenanceFilterContainer">
 
         <TextView
+            android:id="@+id/tvCountPending"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/badge_pending"
             android:gravity="center"
             android:paddingVertical="6dp"
-            android:text="● Pending: 3"
+            android:text="● Pending: 0"
             android:textColor="#EF6C00"
             android:textSize="11sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvCountOngoing"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -163,12 +163,13 @@
             android:background="@drawable/badge_ongoing"
             android:gravity="center"
             android:paddingVertical="6dp"
-            android:text="● Ongoing: 2"
+            android:text="● Ongoing: 0"
             android:textColor="#1976D2"
             android:textSize="11sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvCountCompleted"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -176,33 +177,23 @@
             android:background="@drawable/badge_completed"
             android:gravity="center"
             android:paddingVertical="6dp"
-            android:text="● Completed: 8"
+            android:text="● Completed: 0"
             android:textColor="#2E7D32"
             android:textSize="11sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- List -->
-    <androidx.core.widget.NestedScrollView
+    <!-- Live RecyclerView (replaces static includes) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMaintenance"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:clipToPadding="false"
         android:overScrollMode="never"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/statusCounterContainer">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingBottom="16dp">
-
-            <include android:id="@+id/ItemMaintenancePending" layout="@layout/item_maintenance_pending" />
-            <include android:id="@+id/ItemMaintenanceOngoing" layout="@layout/item_maintenance_ongoing" />
-            <include android:id="@+id/ItemMaintenanceCompleted" layout="@layout/item_maintenance_completed" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        app:layout_constraintTop_toBottomOf="@id/statusCounterContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
